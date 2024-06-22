@@ -177,7 +177,7 @@ else { ?>
                     <td width="60"><?php echo $data['nama_satuan']; ?></td>
                     <td width="220">
                       <div class="row" style="padding-right: 10px;">
-                        <div class="col-md-10">
+                        <div class="col-md-9">
                         <?php
                         $keterangan = $data['keterangan'];
                         // jika keterangan lebih dari 50 karakter

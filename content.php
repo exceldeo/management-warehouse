@@ -121,4 +121,29 @@ else {
     // panggil file form ubah password
     include "modules/password/form_ubah.php";
   }
+  // jika module yang dipilih "nota_aktif"
+  elseif ($_GET['module'] == 'nota') {
+    // panggil file tampil data nota aktif
+    include "modules/nota/tampil_data.php";
+  }
+  // jika module yang dipilih "nota_detail"
+  elseif ($_GET['module'] == 'nota_detail') {
+    // panggil file tampil data nota detail
+    include "modules/nota/tampil_detail_data.php";
+  }
+  // jika module yang dipilih "form_entri_nota"
+  elseif ($_GET['module'] == 'form_entri_nota') {
+    // panggil file form entri nota
+    include "modules/nota/form_entri.php";
+  }
+  // jika module yang dipilih "form_entri_nota_detail"
+  elseif ($_GET['module'] == 'form_entri_data_barang') {
+    // panggil file form entri nota detail
+    include "modules/nota/form_entri_data_barang.php";
+  }
+  // jika module yang dipilih "form_entri_nota_bayar"
+  elseif ($_GET['module'] == 'form_entri_nota_bayar') {
+    // panggil file form entri nota bayar
+    include "modules/nota/form_entri_bayar.php";
+  }
 }

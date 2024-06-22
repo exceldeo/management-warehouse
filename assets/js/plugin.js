@@ -4,6 +4,9 @@ $(document).ready(function() {
   $('#basic-datatables').DataTable({
   });
 
+  $('#basic-datatables2').DataTable({
+  });
+
   // datepicker
   $('.date-picker').datepicker({
       format: "dd-mm-yyyy",

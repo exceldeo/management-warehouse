@@ -154,15 +154,13 @@ if (basename($_SERVER['PHP_SELF']) === basename(__FILE__)) {
         'Kepala Gudang'
       ],
       'menu' => [
-        'nota' => [
-          'module' => 'nota',
+        'laporan_stok' => [
+          'module' => 'laporan_stok',
           'active_module' => [
-            'nota',
-            'nota_detail',
-            'form_entri_nota',
+            'laporan_stok'
           ],
-          'icon' => 'fas fa-file-import', 
-          'title' => 'Nota', 
+          'icon' => 'fas fa-file-signature', 
+          'title' => 'Laporan Stok', 
           'access' => [
             'Administrator', 
             'Admin Gudang', 
