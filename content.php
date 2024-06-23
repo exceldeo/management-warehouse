@@ -146,4 +146,9 @@ else {
     // panggil file form entri nota bayar
     include "modules/nota/form_entri_bayar.php";
   }
+  // jika module yang dipilih "form_ubah_nota"
+  elseif ($_GET['module'] == 'form_ubah_nota') {
+    // panggil file form ubah nota
+    include "modules/nota/form_ubah.php";
+  }
 }

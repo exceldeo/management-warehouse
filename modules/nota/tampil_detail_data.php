@@ -39,18 +39,14 @@ else {
       </div>
     </div>
   </div>
-
-  <?php
-    // ambil data hasil submit dari form filter
-    $tanggal_awal   = isset($_POST['tanggal_awal']) ? $_POST['tanggal_awal'] : '';
-    $tanggal_akhir  = isset($_POST['tanggal_akhir']) ? $_POST['tanggal_akhir'] : '';
-    $status         = isset($_POST['status']) ? $_POST['status'] : '';
-    $sort_by        = isset($_POST['sort_by']) ? $_POST['sort_by'] : '';
-  ?>
     <div class="page-inner mt--5">
         <div class="card">
             <div class="card-header">
-                <div class="card-title">Data Nota</div>
+                <div class="card-title">Data Nota
+                    <div class="float-right">
+                        <a href="?module=form_ubah_nota&id=<?=$id_nota?>" class="btn btn-secondary btn-round text-white">Edit</a>
+                    </div>
+                </div>
             </div>
             <div class="card-body">
                 <div class="row">
