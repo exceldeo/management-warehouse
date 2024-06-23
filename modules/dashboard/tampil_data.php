@@ -216,6 +216,125 @@ else {
 
       <hr class="mt-1 pb-2">
     <?php } ?>
+
+    
+    <div class="card">
+        <div class="card-header">
+          <!-- judul tabel -->
+          <div class="card-title">
+              <i class="fas fa-file-alt mr-2"></i> Laporan Data Nota Belum lunas
+              <br> 
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <!-- tabel untuk menampilkan data dari database -->
+            <table id="basic-datatables" class="display table table-bordered table-striped table-hover">
+              <thead>
+                <tr>
+                  <th class="text-center"
+                    style="width: 5%;">#</th>
+                  <th class="text-center"
+                    style="width: 20%;">Nomor Nota</th>
+                    <th class="text-center"
+                    style="width: 15%;">Jumlah</th>
+                    <th class="text-center"
+                    style="width: 17%;">Jumlah Belum Dibayar</th>
+                    <th class="text-center"
+                      style="width: 10%;">Status</th>
+                    <th class="text-center"
+                      style="width: 15%;">Jatuh Tempo</th>
+                    <th class="text-center"
+                      style="width: 5%; min-width: 100px;">Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                // variabel untuk nomor urut tabel
+                $no = 1;
+
+                $query = "
+                    SELECT n.*, n.jumlah - IFNULL(SUM(bn.jumlah_bayar), 0) as jumlah_belum_dibayar, 
+                    DATEDIFF(n.jatuh_tempo, CURDATE()) as days_until_due
+                    FROM tbl_nota n
+                    LEFT JOIN tbl_bayar_nota bn ON n.id = bn.id_nota
+                    GROUP BY n.id 
+                    HAVING jumlah_belum_dibayar > 0
+                    ORDER BY days_until_due ASC
+                ";                
+
+                $result = mysqli_query($mysqli, $query);
+
+                // ambil data hasil query
+                if($result){
+                    while ($data = mysqli_fetch_assoc($result)) { ?>
+                    <!-- tampilkan data -->
+                    <tr>
+                        <td class="text-center"><?php echo $no++; ?></td>
+                        <td><?php echo $data['nomor_nota']; ?></td>
+                        <td class="text-right
+                        ">Rp. <?php echo number_format($data['jumlah'], 0, ',', '.'); ?></td>
+                        <td class="text-right
+                        ">Rp. <?php echo number_format($data['jumlah_belum_dibayar'], 0, ',', '.'); ?></td>
+                        <td class="text-center">
+                            <?php
+                            if ($data['jumlah_belum_dibayar'] <= 0) {
+                                echo '<span class="badge badge-success">Lunas</span>';
+                            } else {
+                                echo '<span class="badge badge-danger">Belum Lunas</span>';
+                            }
+                            ?>
+                        </td>
+                        <?php
+                        $days = $data['days_until_due'];
+                        $statusNota = $data['jumlah_belum_dibayar'] <= 0 ? 'lunas' : 'belum_lunas';
+                        $labelColor = 'green';
+                        $textColor = 'white';
+
+                        if ($days < 3 && $statusNota == 'belum_lunas') {
+                            $labelColor = 'red';
+                        } elseif ($days < 10 && $statusNota == 'belum_lunas') {
+                            $labelColor = 'yellow';
+                            $textColor = 'black';
+                        }
+                        ?>
+
+                        <td class="text-center">
+                            <span class="label p-2" style="background-color: <?= $labelColor; ?>; border-radius: 25px; color: <?=$textColor?>">
+                                <?php 
+                                    if ($statusNota == 'lunas') {
+                                        echo 'Lunas';
+                                    } elseif ($days < 0) {
+                                        echo 'Telat ' . abs($days) . ' hari';
+                                    } else {
+                                        echo $days . ' hari lagi';
+                                    }
+                                ?>
+                            </span>
+                        </td>
+
+                        <td class="text-center">
+                        <!-- tombol detail -->
+                        <a href="?module=nota_detail&id=<?php echo $data['id']; ?>" class="btn btn-info btn-sm">
+                            <i class="fas fa-info-circle"></i> Detail
+                        </a>
+                        </td>
+                    </tr>
+                    <?php }
+                    }
+                else {
+                    echo '
+                        <tr>
+                        <td colspan="6" class="text-center">Tidak ada data</td>
+                        </tr>
+                    ';
+                }
+                ?>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
     
     <!-- menampilkan informasi stok barang yang telah mencapai batas minimum -->
     <div class="card">
