@@ -124,7 +124,7 @@ else {
             <div class="col-md-5 ml-auto">
               <div class="form-group">
                 <label>Jumlah Masuk <span class="text-danger">*</span></label>
-                <input type="text" id="jumlah" name="jumlah" class="form-control" autocomplete="off" onKeyPress="return goodchars(event,'0123456789',this)" required>
+                <input type="text" id="jumlah" name="jumlah" class="form-control" autocomplete="off" onKeyPress="return goodchars(event,'0123456789.',this)" required>
                 <div class="invalid-feedback">Jumlah masuk tidak boleh kosong.</div>
               </div>
 

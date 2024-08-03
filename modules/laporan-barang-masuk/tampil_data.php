@@ -173,7 +173,7 @@ else { ?>
                     <td width="90" class="text-center"><?php echo $data['id_transaksi']; ?></td>
                     <td width="70" class="text-center"><?php echo date('d-m-Y', strtotime($data['tanggal'])); ?></td>
                     <td width="220"><?php echo $data['barang']; ?> - <?php echo $data['nama_barang']; ?></td>
-                    <td width="100" class="text-right"><?php echo number_format($data['jumlah'], 0, '', '.'); ?></td>
+                    <td width="100" class="text-right"><?=str_replace('.', ',', $data['jumlah'])?></td>
                     <td width="60"><?php echo $data['nama_satuan']; ?></td>
                     <td width="220">
                       <div class="row" style="padding-right: 10px;">

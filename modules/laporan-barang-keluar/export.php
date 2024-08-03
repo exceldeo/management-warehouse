@@ -67,7 +67,7 @@ else {
           <td width="150" align="center"><?php echo $data['id_transaksi']; ?></td>
           <td width="130" align="center"><?php echo date('d-m-Y', strtotime($data['tanggal'])); ?></td>
           <td width="300"><?php echo $data['barang']; ?> - <?php echo $data['nama_barang']; ?></td>
-          <td width="130" align="right"><?php echo number_format($data['jumlah'], 0, '', '.'); ?></td>
+          <td width="130" align="right"><?=str_replace('.', ',', $data['jumlah'])?></td>
           <td width="130"><?php echo $data['nama_satuan']; ?></td>
           <td width="300"><?php echo (empty($data['keterangan']) ? '-' : $data['keterangan']); ?></td>
         </tr>

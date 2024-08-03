@@ -113,7 +113,7 @@ else { ?>
             <div class="col-md-5 ml-auto">
               <div class="form-group">
                 <label>Jumlah Keluar <span class="text-danger">*</span></label>
-                <input type="text" id="jumlah" name="jumlah" class="form-control" autocomplete="off" onKeyPress="return goodchars(event,'0123456789',this)" required>
+                <input type="text" id="jumlah" name="jumlah" class="form-control" autocomplete="off" onKeyPress="return goodchars(event,'0123456789.',this)" required>
                 <div class="invalid-feedback">Jumlah keluar tidak boleh kosong.</div>
               </div>
 
@@ -182,15 +182,6 @@ else { ?>
         }
         // jika "jumlah" belum diisi
         else if (jumlah == "") {
-          // sisa stok kosong
-          var sisa_stok = "";
-        }
-        // jika "jumlah" diisi 0
-        else if (jumlah == 0) {
-          // tampilkan pesan peringatan
-          $('#pesan').html('<div class="alert alert-notify alert-warning alert-dismissible fade show" role="alert"><span data-notify="icon" class="fas fa-exclamation"></span><span data-notify="title" class="text-warning">Peringatan!</span> <span data-notify="message">Jumlah keluar tidak boleh 0 (nol).</span><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button></div>');
-          // reset input "jumlah"
-          $('#jumlah').val('');
           // sisa stok kosong
           var sisa_stok = "";
         }

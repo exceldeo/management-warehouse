@@ -77,7 +77,7 @@ else {
                     <td width="90" class="text-center">' . $data['id_transaksi'] . '</td>
                     <td width="70" class="text-center">' . date('d-m-Y', strtotime($data['tanggal'])) . '</td>
                     <td width="220">' . $data['barang'] . ' - ' . $data['nama_barang'] . '</td>
-                    <td width="70" class="text-right">' . number_format($data['jumlah'], 0, '', '.') . '</td>
+                    <td width="70" class="text-right">' .str_replace('.', ',', $data['jumlah']) . '</td>
                     <td width="70">' . $data['nama_satuan'] . '</td>
                     <td width="220">' . (empty($data['keterangan']) ? '-' : (strlen($data['keterangan']) > 40 ? substr($data['keterangan'], 0, 40) . '...' : $data['keterangan'])) . '</td>
                   </tr>';

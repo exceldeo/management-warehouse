@@ -85,7 +85,7 @@ else {
 
               <div class="form-group">
                 <label>Stok Minimum <span class="text-danger">*</span></label>
-                <input type="text" name="stok_minimum" class="form-control" autocomplete="off" onKeyPress="return goodchars(event,'0123456789',this)" value="<?php echo $data['stok_minimum']; ?>" required>
+                <input type="text" name="stok_minimum" class="form-control" autocomplete="off" onKeyPress="return goodchars(event,'0123456789.',this)" value="<?php echo $data['stok_minimum']; ?>" required>
                 <div class="invalid-feedback">Stok minimum tidak boleh kosong.</div>
               </div>
 
