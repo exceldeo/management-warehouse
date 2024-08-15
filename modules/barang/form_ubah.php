@@ -13,7 +13,7 @@ else {
     $id_barang = $_GET['id'];
 
     // sql statement untuk menampilkan data dari tabel "tbl_barang", tabel "tbl_jenis", dan tabel "tbl_satuan" berdasarkan "id_barang"
-    $query = mysqli_query($mysqli, "SELECT a.id_barang, a.nama_barang, a.jenis, a.stok_minimum, a.stok, a.satuan, a.foto, b.nama_jenis, c.nama_satuan
+    $query = mysqli_query($mysqli, "SELECT a.id_barang, a.nama_barang, a.jenis, a.stok_minimum, a.stok, a.satuan, a.foto, b.nama_jenis, c.nama_satuan, a.harga
                                     FROM tbl_barang as a INNER JOIN tbl_jenis as b INNER JOIN tbl_satuan as c 
                                     ON a.jenis=b.id_jenis AND a.satuan=c.id_satuan 
                                     WHERE a.id_barang='$id_barang'")
@@ -84,6 +84,12 @@ else {
               </div>
 
               <div class="form-group">
+                <label>Harga <span class="text-danger">*</span></label>
+                <input type="text" name="harga" id="harga" class="form-control" autocomplete="off" onKeyPress="return goodchars(event,'0123456789.',this)" value="<?php echo $data['harga']; ?>" required>
+                <div class="invalid-feedback">Harga tidak boleh kosong.</div>
+              </div>
+
+              <div class="form-group">
                 <label>Stok Minimum <span class="text-danger">*</span></label>
                 <input type="text" name="stok_minimum" class="form-control" autocomplete="off" onKeyPress="return goodchars(event,'0123456789.',this)" value="<?php echo $data['stok_minimum']; ?>" required>
                 <div class="invalid-feedback">Stok minimum tidak boleh kosong.</div>
@@ -147,7 +153,23 @@ else {
       </form>
     </div>
   </div>
+  <script>
+      document.getElementById('harga').addEventListener('input', function (e) {
+          var value = e.target.value.replace(/[^,\d]/g, '').toString();
+          var split = value.split(',');
+          var sisa = split[0].length % 3;
+          var rupiah = split[0].substr(0, sisa);
+          var ribuan = split[0].substr(sisa).match(/\d{3}/gi);
 
+          if (ribuan) {
+              var separator = sisa ? '.' : '';
+              rupiah += separator + ribuan.join('.');
+          }
+
+          rupiah = split[1] !== undefined ? rupiah + ',' + split[1] : rupiah;
+          e.target.value = 'Rp ' + rupiah;
+      });
+  </script>
   <script type="text/javascript">
     $(document).ready(function() {
       // validasi file dan preview file sebelum diunggah

@@ -86,6 +86,10 @@ else {
     // panggil file form entri barang keluar
     include "modules/barang-keluar/form_entri.php";
   }
+  elseif ($_GET['module'] == 'form_entri_bulk_barang_keluar' && $_SESSION['hak_akses'] != 'Kepala Gudang') {
+    // panggil file form entri barang keluar
+    include "modules/barang-keluar/form_entri_bulk.php";
+  }
   // jika module yang dipilih "laporan_stok"
   elseif ($_GET['module'] == 'laporan_stok') {
     // panggil file tampil data laporan stok

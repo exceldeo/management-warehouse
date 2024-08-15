@@ -53,6 +53,9 @@ else {
         </div>
         <div class="ml-md-auto py-2 py-md-0">
           <!-- tombol entri data -->
+          <a href="?module=form_entri_bulk_barang_keluar" class="btn btn-secondary btn-round">
+            <span class="btn-label"><i class="fa fa-plus mr-2"></i></span> Entri Bulk Data
+          </a>
           <a href="?module=form_entri_barang_keluar" class="btn btn-secondary btn-round">
             <span class="btn-label"><i class="fa fa-plus mr-2"></i></span> Entri Data
           </a>

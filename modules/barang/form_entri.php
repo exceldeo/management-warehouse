@@ -94,6 +94,12 @@ else { ?>
               </div>
 
               <div class="form-group">
+                  <label>Harga <span class="text-danger">*</span></label>
+                  <input type="text" id="harga" name="harga" class="form-control" autocomplete="off" onKeyPress="return goodchars(event,'0123456789.',this)" required>
+                  <div class="invalid-feedback">Harga tidak boleh kosong.</div>
+              </div>
+
+              <div class="form-group">
                 <label>Stok Minimum <span class="text-danger">*</span></label>
                 <input type="text" name="stok_minimum" class="form-control" autocomplete="off" onKeyPress="return goodchars(event,'0123456789.',this)" required>
                 <div class="invalid-feedback">Stok minimum tidak boleh kosong.</div>
@@ -144,7 +150,23 @@ else { ?>
       </form>
     </div>
   </div>
+  <script>
+      document.getElementById('harga').addEventListener('input', function (e) {
+          var value = e.target.value.replace(/[^,\d]/g, '').toString();
+          var split = value.split(',');
+          var sisa = split[0].length % 3;
+          var rupiah = split[0].substr(0, sisa);
+          var ribuan = split[0].substr(sisa).match(/\d{3}/gi);
 
+          if (ribuan) {
+              var separator = sisa ? '.' : '';
+              rupiah += separator + ribuan.join('.');
+          }
+
+          rupiah = split[1] !== undefined ? rupiah + ',' + split[1] : rupiah;
+          e.target.value = 'Rp ' + rupiah;
+      });
+  </script>
   <script type="text/javascript">
     $(document).ready(function() {
       // validasi file dan preview file sebelum diunggah

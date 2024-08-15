@@ -18,6 +18,8 @@ else {
     $id_barang          = mysqli_real_escape_string($mysqli, $_POST['id_barang']);
     $nama_barang        = mysqli_real_escape_string($mysqli, trim($_POST['nama_barang']));
     $jenis              = mysqli_real_escape_string($mysqli, $_POST['jenis']);
+    $harga = mysqli_real_escape_string($mysqli, $_POST['harga']);
+    $harga = str_replace(['Rp', '.', ' '], '', $harga); // Remove 'Rp', dots, and spaces
     $stok_minimum       = mysqli_real_escape_string($mysqli, $_POST['stok_minimum']);
     $satuan             = mysqli_real_escape_string($mysqli, $_POST['satuan']);
 
@@ -35,7 +37,7 @@ else {
     if (empty($nama_file)) {
       // sql statement untuk update data di tabel "tbl_barang" berdasarkan "id_barang"
       $update = mysqli_query($mysqli, "UPDATE tbl_barang
-                                       SET nama_barang='$nama_barang', jenis='$jenis', stok_minimum='$stok_minimum', satuan='$satuan'
+                                       SET nama_barang='$nama_barang', jenis='$jenis', stok_minimum='$stok_minimum', satuan='$satuan', harga='$harga'
                                        WHERE id_barang='$id_barang'")
                                        or die('Ada kesalahan pada query update : ' . mysqli_error($mysqli));
       // cek query

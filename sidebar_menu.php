@@ -135,6 +135,7 @@ if (basename($_SERVER['PHP_SELF']) === basename(__FILE__)) {
           'active_module' => [
             'barang_keluar',
             'form_entri_barang_keluar',
+            'form_entri_bulk_barang_keluar'
           ],
           'icon' => 'fas fa-sign-out-alt', 
           'title' => 'Barang Keluar', 
